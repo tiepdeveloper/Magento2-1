@@ -20,12 +20,12 @@ services:
     links:
       - db
     networks:
-      - <project_name>-network
+      - tiepnd-network
 
   db:
     image: mariadb
     ports:
-     - 3300:3306
+      - 3300:3306
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=magento
@@ -34,33 +34,33 @@ services:
     volumes:
       - dbdata:/var/lib/mysql
     networks:
-      - <project_name>-network
+      - tiepnd-network
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     environment:
-     - PMA_HOST=db
-     - PMA_USER=root
-     - PMA_PASSWORD=root
-     - MYSQL_ROOT_PASSWORD=root
+      - PMA_HOST=db
+      - PMA_USER=root
+      - PMA_PASSWORD=root
+      - MYSQL_ROOT_PASSWORD=root
     ports:
-     - 8080:80
+      - 8080:80
     networks:
-      - <project_name>-network
+      - tiepnd-network
 
   redis:
     image: redis
     ports:
-     - 6379
+      - 6379
     networks:
-      - <project_name>-network
+      - tiepnd-network
 
   redis-session:
     image: redis
     ports:
-     - 6379
+      - 6379
     networks:
-      - <project_name>-network
+      - tiepnd-network
 
   mailhog:
     image: mailhog/mailhog
@@ -68,10 +68,10 @@ services:
       - 1025:1025
       - 8025:8025
     networks:
-      - <project_name>-network
+      - tiepnd-network
 
 networks:
-  <project_name>-network:
+  tiepnd-network:
     driver: bridge
 
 volumes:
